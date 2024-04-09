@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: 'Montserrat-Regular';
+  src: url('./../public/montserrat/Montserrat-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat-Bold';
+  src: url('./../public/montserrat/Montserrat-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat-ExtraBold';
+  src: url('./../public/montserrat/Montserrat-ExtraBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --text: #030407;
+  --background: #ffffff;
+  --primary: #002f82;
+  --primary-20: #002566;
+  --primary-40: #004acc;
+  --primary-55: #337dff;
+  --primary-80: #99beff;
+  --primary-90: #ccdeff;
+  --primary-95: #e6efff;
+  --primary-99: #f0f4fa;
+  --secondary: #ffc600;
+  --secondary-40: #cc9e00;
+  --secondary-60: #ffd133;
+  --secondary-70: #ffdd66;
+  --secondary-80: #ffe899;
+  --secondary-95: #fff9e5;
+  --success: #1fad66;
+  --success-30: #17824c;
+  --success-50: #52e099;
+  --success-80: #d3f0e3;
+  --info: #3e8af4;
+  --info-30: #23529a;
+  --info-55: #267bf3;
+  --info-70: #6ea7f7;
+  --info-80: #e0e8f6;
+  --warning: #ff6a00;
+  --warning-30: #b45012;
+  --warning-40: #cc5500;
+  --warning-60: #ff8833;
+  --warning-80: #fff4d3;
+  --error: #ff4d4f;
+  --error-30: #a72121;
+  --error-40: #cc0022;
+  --error-60: #ff3355;
+  --error-80: #f6d4d4;
+  --gray-10: #1a1a1a;
+  --gray-20: #333333;
+  --gray-30: #4d4d4d;
+  --gray-40: #666666;
+  --gray-50: #808080;
+  --gray-60: #999999;
+  --gray-70: #b3b3b3;
+  --gray-80: #cccccc;
+  --gray-90: #e6e6e6;
+  --gray-95: #f2f2f2;
+  font-family: Montserrat-Regular;
+  --header-height: 3rem;
+  --footer-height: 4rem;
+}

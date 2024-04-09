@@ -1,0 +1,27 @@
+.notification-success {
+  background-color: var(--success-80);
+  color: var(--gray-10);
+  border-radius: 5px;
+  text-align: start;
+}
+
+.notification-error {
+  background-color: var(--error-80);
+  color: var(--gray-10);
+  border-radius: 5px;
+  text-align: start;
+}
+
+.notification-info {
+  background-color: var(--info-80);
+  color: var(--gray-10);
+  border-radius: 5px;
+  text-align: start;
+}
+
+.notification-warning {
+  background-color: var(--warning-80);
+  color: var(--gray-10);
+  border-radius: 5px;
+  text-align: start;
+}

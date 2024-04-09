@@ -1,0 +1,124 @@
+{
+  "hash": "9410fe38",
+  "configHash": "74142c74",
+  "lockfileHash": "7a7d01b0",
+  "browserHash": "44e4d092",
+  "optimized": {
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "a7476998",
+      "needsInterop": true
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "fc091508",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "4df17847",
+      "needsInterop": true
+    },
+    "antd": {
+      "src": "../../node_modules/antd/es/index.js",
+      "file": "antd.js",
+      "fileHash": "4abaf080",
+      "needsInterop": false
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "602c5763",
+      "needsInterop": false
+    },
+    "@ant-design/icons": {
+      "src": "../../node_modules/@ant-design/icons/es/index.js",
+      "file": "@ant-design_icons.js",
+      "fileHash": "091b526d",
+      "needsInterop": false
+    },
+    "framer-motion": {
+      "src": "../../node_modules/framer-motion/dist/es/index.mjs",
+      "file": "framer-motion.js",
+      "fileHash": "448a1811",
+      "needsInterop": false
+    },
+    "dayjs/locale/es": {
+      "src": "../../node_modules/dayjs/locale/es.js",
+      "file": "dayjs_locale_es.js",
+      "fileHash": "44ca63cb",
+      "needsInterop": true
+    },
+    "antd/locale/en_US": {
+      "src": "../../node_modules/antd/locale/en_US.js",
+      "file": "antd_locale_en_US.js",
+      "fileHash": "e22c09d8",
+      "needsInterop": true
+    },
+    "antd/locale/es_ES": {
+      "src": "../../node_modules/antd/locale/es_ES.js",
+      "file": "antd_locale_es_ES.js",
+      "fileHash": "f271d22b",
+      "needsInterop": true
+    },
+    "dayjs": {
+      "src": "../../node_modules/dayjs/dayjs.min.js",
+      "file": "dayjs.js",
+      "fileHash": "bef5a81a",
+      "needsInterop": true
+    },
+    "i18next": {
+      "src": "../../node_modules/i18next/dist/esm/i18next.js",
+      "file": "i18next.js",
+      "fileHash": "4c076307",
+      "needsInterop": false
+    },
+    "react-i18next": {
+      "src": "../../node_modules/react-i18next/dist/es/index.js",
+      "file": "react-i18next.js",
+      "fileHash": "bf3e055a",
+      "needsInterop": false
+    },
+    "zustand": {
+      "src": "../../node_modules/zustand/esm/index.mjs",
+      "file": "zustand.js",
+      "fileHash": "46f22b52",
+      "needsInterop": false
+    },
+    "crypto-js": {
+      "src": "../../node_modules/crypto-js/index.js",
+      "file": "crypto-js.js",
+      "fileHash": "5ee2530f",
+      "needsInterop": true
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "3bf51d51",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-DTMFDZZF": {
+      "file": "chunk-DTMFDZZF.js"
+    },
+    "chunk-LNB2U74H": {
+      "file": "chunk-LNB2U74H.js"
+    },
+    "chunk-EJV6XBW2": {
+      "file": "chunk-EJV6XBW2.js"
+    },
+    "chunk-UPB6Y4P2": {
+      "file": "chunk-UPB6Y4P2.js"
+    },
+    "chunk-7FURWHLY": {
+      "file": "chunk-7FURWHLY.js"
+    },
+    "chunk-3EJPJMEH": {
+      "file": "chunk-3EJPJMEH.js"
+    }
+  }
+}

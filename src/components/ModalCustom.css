@@ -1,0 +1,8 @@
+.ant-modal,
+.ant-modal-content {
+  height: 98dvh;
+  width: 95dvw;
+  margin: 0;
+  padding: 0;
+  top: 0;
+}

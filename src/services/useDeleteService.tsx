@@ -1,37 +1,42 @@
-import { useState } from 'react';
-import { baseUrl } from '../constants';
+import {useState} from 'react';
+import {baseUrl} from '../constants';
 import useAuthStore from '../store/AuthStore';
 import useGeneralStore from '../store/GeneralStore';
 
-const useDeleteService = () => {
+const useDeleteService = (globalLoader = true) => {
   const [data, setData] = useState(null);
-  const setModal = useGeneralStore((state) => state.setModal);
-  const setIsLoading = useGeneralStore((state) => state.setIsLoading);
-  const setResponseMessage = useGeneralStore((state) => state.setResponseMessage);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const openAlert = useGeneralStore((state) => state.openAlert);
+  const setIsLoadingApp = useGeneralStore((state) => state.setIsLoadingApp);
   const apiClient = useAuthStore((state) => state.apiClient);
   const deleteRequest = async (url: string, params: object) => {
-    setIsLoading(true);
+    if (globalLoader) {
+      setIsLoadingApp(true);
+    } else {
+      setIsLoading(true);
+    }
     try {
       if (apiClient) {
         const response = await apiClient.delete(baseUrl + url + '/' + params);
         if (response.data.status === 200) {
           setData(response.data);
-          setResponseMessage(response.data.message);
-          setModal(null);
-          setIsLoading(false);
         } else {
           setData(null);
-          setModal({ tipo: 'error', message: response.data.error });
-          setIsLoading(false);
+          openAlert('error', 'Mostrar error del server');
         }
       }
     } catch (error: any) {
-      setModal({ tipo: 'error', message: error.response?.data?.error || error.message });
-      setIsLoading(false);
+      openAlert('error', 'Mostrar error del catch');
+    } finally {
+      if (globalLoader) {
+        setIsLoadingApp(false);
+      } else {
+        setIsLoading(false);
+      }
     }
   };
 
-  return { deleteRequest, data };
+  return {deleteRequest, data, isLoading};
 };
 
 export default useDeleteService;

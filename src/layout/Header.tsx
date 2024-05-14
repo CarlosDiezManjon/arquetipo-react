@@ -2,6 +2,7 @@ import {ArrowLeftOutlined, MenuOutlined} from '@ant-design/icons';
 import {useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {useI18nTranslation} from '../i18n/I18n';
+import {AppRoutes} from '../routes/routes';
 import SideMenu from './SideMenu';
 
 export default function Header() {
@@ -15,11 +16,11 @@ export default function Header() {
 
   useEffect(() => {
     switch (location.pathname) {
-      case '/':
+      case AppRoutes.HOME:
         setTitle(t('pages.home'));
         setShowBackArrow(false);
         break;
-      case '/details':
+      case AppRoutes.DETAILS:
         setTitle(t('pages.details'));
         setShowBackArrow(true);
         break;

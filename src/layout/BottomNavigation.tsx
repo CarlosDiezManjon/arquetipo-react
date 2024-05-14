@@ -1,8 +1,7 @@
-import {HomeFilled, HomeOutlined, ProfileFilled, ProfileOutlined} from '@ant-design/icons';
 import {useEffect} from 'react';
 import {Link, useLocation} from 'react-router-dom';
-import {AppRoutes} from '../constants';
 import {useI18nTranslation} from '../i18n/I18n';
+import {AppRoutes, authRoutes} from '../routes/routes';
 import useGeneralStore from '../store/GeneralStore';
 
 export default function BottomNavigation() {
@@ -25,37 +24,23 @@ export default function BottomNavigation() {
     }
   }, [location.pathname]);
 
-  const options = [
-    {
-      name: t('pages.home'),
-      icon: <HomeOutlined className=" text-2xl " />,
-      iconSelected: <HomeFilled />,
-      path: AppRoutes.HOME,
-    },
-    {
-      name: t('pages.details'),
-      icon: <ProfileOutlined className=" text-2xl " />,
-      iconSelected: <ProfileFilled />,
-      path: AppRoutes.DETAILS,
-    },
-  ];
   return (
     <div
       className="h-footer bg-background w-full flex items-center justify-center fixed bottom-0 z-50"
       style={{boxShadow: '0px 1px 5px 1px var(--primary-80)'}}
     >
-      {options.map((option, index) => (
+      {authRoutes.map((option, index) => (
         <Link
           key={index}
           className={
             'h-full w-4/12 flex flex-col justify-center mx-1 rounded font-medium  cursor-pointer z-50 text-primary transition-colors duration-300 ' +
             (index === routeSelected ? 'text-primary-55' : '')
           }
-          to={option.path}
+          to={option.path ? option.path : '/'}
         >
           <div className={'flex flex-col items-center ' + (index === routeSelected ? '' : '')}>
-            {option.icon}
-            <span className={'text-base pt-0'}>{option.name}</span>
+            {index === routeSelected ? option.iconSelected : option.icon}
+            <span className={'text-base pt-0'}>{t(option.label ? option.label : '')}</span>
           </div>
         </Link>
       ))}

@@ -3,33 +3,40 @@ import {baseUrl} from '../constants';
 import useAuthStore from '../store/AuthStore';
 import useGeneralStore from '../store/GeneralStore';
 
-const useGetService = () => {
+const useGetService = (globalLoader = true) => {
   const [data, setData] = useState<any>(null);
-  const setModal = useGeneralStore((state) => state.setModal);
-  const setIsLoading = useGeneralStore((state) => state.setIsLoading);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const openAlert = useGeneralStore((state) => state.openAlert);
+  const setIsLoadingApp = useGeneralStore((state) => state.setIsLoadingApp);
   const apiClient = useAuthStore((state) => state.apiClient);
   const getRequest = async (url: string, params?: any) => {
-    setIsLoading(true);
+    if (globalLoader) {
+      setIsLoadingApp(true);
+    } else {
+      setIsLoading(true);
+    }
     try {
       if (apiClient) {
         const response = await apiClient.get(baseUrl + url, {params});
         if (response.status === 200) {
           setData(response.data);
-          setModal(null);
-          setIsLoading(false);
         } else {
           setData(null);
-          setModal({tipo: 'error', message: response.data.error});
-          setIsLoading(false);
+          openAlert('error', 'Mostrar error del server');
         }
       }
     } catch (error: any) {
-      setModal({tipo: 'error', message: error?.response?.data?.error?.message || error.message});
-      setIsLoading(false);
+      openAlert('error', 'Mostrar error del catch');
+    } finally {
+      if (globalLoader) {
+        setIsLoadingApp(false);
+      } else {
+        setIsLoading(false);
+      }
     }
   };
 
-  return {getRequest, data};
+  return {getRequest, data, isLoading};
 };
 
 export default useGetService;

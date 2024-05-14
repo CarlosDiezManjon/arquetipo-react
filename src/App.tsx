@@ -7,13 +7,14 @@ import {ErrorAlert, InfoAlert, SuccessAlert, WarningAlert} from './components/Al
 import Loader from './components/Loader';
 import ModalCustom from './components/ModalCustom';
 import I18n from './i18n/I18n';
-import {renderRoutes, routes} from './routes';
+import {renderRoutes} from './routes';
+import {routes} from './routes/routes';
 import useGeneralStore from './store/GeneralStore';
 
 export default function App() {
   //Configuración de las notificaciones. Para usarlo en los componentes
   const [api, contextHolder] = notification.useNotification();
-  const setOpenMessage = useGeneralStore((state) => state.setOpenMessage);
+  const setAlert = useGeneralStore((state) => state.setAlert);
 
   useEffect(() => {
     const openMessage = (type: NoticeType, content: string) => {
@@ -40,7 +41,7 @@ export default function App() {
         placement: 'top',
       });
     };
-    setOpenMessage(openMessage);
+    setAlert(openMessage);
   }, []);
 
   return (

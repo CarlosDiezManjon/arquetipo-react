@@ -3,33 +3,38 @@ import {useState} from 'react';
 import {baseUrl} from '../constants';
 import useGeneralStore from '../store/GeneralStore';
 
-const useLoginService = () => {
+const useLoginService = (globalLoader = true) => {
   const [data, setData] = useState<any>(null);
-  const setAppError = useGeneralStore((state) => state.setAppError);
-  const setAppReady = useGeneralStore((state) => state.setAppReady);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const openAlert = useGeneralStore((state) => state.openAlert);
+  const setIsLoadingApp = useGeneralStore((state) => state.setIsLoadingApp);
 
   const login = async (body: any) => {
-    setAppReady(false);
+    if (globalLoader) {
+      setIsLoadingApp(true);
+    } else {
+      setIsLoading(true);
+    }
     try {
-      const response = await axios.post(baseUrl + '/usuarios/login', body);
+      const response = await axios.post(baseUrl + 'url de login', body);
       if (response.status === 200) {
-        let responseWithToken = response.data;
-        responseWithToken.token = body.token;
-        setData(responseWithToken);
-        setAppError(null);
-        setAppReady(true);
+        setData(response.data);
       } else {
         setData(null);
-        setAppError('ERROR-LOGIN');
-        setAppReady(true);
+        openAlert('error', 'Mostrar error del server');
       }
     } catch (error: any) {
-      setAppError('ERROR-LOGIN');
-      setAppReady(true);
+      openAlert('error', 'Mostrar error del catch');
+    } finally {
+      if (globalLoader) {
+        setIsLoadingApp(false);
+      } else {
+        setIsLoading(false);
+      }
     }
   };
 
-  return {login, data};
+  return {login, data, isLoading};
 };
 
 export default useLoginService;

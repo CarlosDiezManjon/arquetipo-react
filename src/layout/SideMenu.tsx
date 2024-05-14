@@ -1,43 +1,30 @@
-import {CloseOutlined, HomeOutlined, UserOutlined} from '@ant-design/icons';
+import {CloseOutlined} from '@ant-design/icons';
 import {Divider, Drawer} from 'antd';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Link, useLocation} from 'react-router-dom';
-import {AppRoutes} from '../constants';
 import {useI18nTranslation} from '../i18n/I18n';
+import {AppRoutes, authRoutes} from '../routes/routes';
+import useGeneralStore from '../store/GeneralStore';
 
 export default function SideMenu({openMenu, setOpenMenu}: {openMenu: boolean; setOpenMenu: React.Dispatch<React.SetStateAction<boolean>>}) {
   const {t} = useI18nTranslation();
   const location = useLocation();
-  const [optionSelected, setOptionSelected] = useState<number>(0);
+  const setRouteSelected = useGeneralStore((state) => state.setRouteSelected);
+  const routeSelected = useGeneralStore((state) => state.routeSelected);
 
   useEffect(() => {
     switch (location.pathname) {
-      case '/':
-        setOptionSelected(0);
+      case AppRoutes.HOME:
+        setRouteSelected(0);
         break;
-      case '/login':
-        setOptionSelected(1);
+      case AppRoutes.DETAILS:
+        setRouteSelected(1);
         break;
       default:
-        setOptionSelected(0);
+        setRouteSelected(0);
         break;
     }
   }, [location.pathname, location.state?.tab]);
-
-  const menuOptions = [
-    {
-      name: t('pages.home'),
-      icon: <HomeOutlined />,
-      path: AppRoutes.HOME,
-      index: 0,
-    },
-    {
-      name: t('pages.details'),
-      icon: <UserOutlined />,
-      path: AppRoutes.DETAILS,
-      index: 1,
-    },
-  ];
 
   return (
     <Drawer
@@ -47,22 +34,22 @@ export default function SideMenu({openMenu, setOpenMenu}: {openMenu: boolean; se
       closeIcon={<CloseOutlined className="text-2xl text-text" />}
       className="text-primary"
     >
-      {menuOptions.map((option, index) => (
+      {authRoutes.map((option, index) => (
         <React.Fragment key={index}>
           <div className="text-primary text-2xl">
             {option.path != null ? (
               <Link
-                className={'flex items-center justify-start p-2 ' + (optionSelected === option.index ? 'text-primary-55' : '')}
+                className={'flex items-center justify-start p-2 ' + (routeSelected == index ? 'text-primary-55' : '')}
                 to={option.path}
                 onClick={() => setOpenMenu(false)}
               >
-                {option.icon}
-                <p className="ml-4">{option.name}</p>
+                {index === routeSelected ? option.iconSelected : option.icon}
+                <p className="ml-4">{t(option.label ? option.label : '')}</p>
               </Link>
             ) : (
               <div className="flex items-center justify-start px-2">
-                {option.icon}
-                <p className="ml-4">{option.name}</p>
+                {index === routeSelected ? option.iconSelected : option.icon}
+                <p className="ml-4">{t(option.label ? option.label : '')}</p>
               </div>
             )}
           </div>

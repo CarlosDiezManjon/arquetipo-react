@@ -1,37 +1,43 @@
-import { useState } from 'react';
-import { baseUrl } from '../constants';
+import {useState} from 'react';
+import {baseUrl} from '../constants';
 import useAuthStore from '../store/AuthStore';
 import useGeneralStore from '../store/GeneralStore';
 
-const usePutService = () => {
-  const setIsLoading = useGeneralStore((state) => state.setIsLoading);
+const usePutService = (globalLoader = true) => {
   const [data, setData] = useState(null);
-  const setModal = useGeneralStore((state) => state.setModal);
-  const setResponseMessage = useGeneralStore((state) => state.setResponseMessage);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const openAlert = useGeneralStore((state) => state.openAlert);
+  const setIsLoadingApp = useGeneralStore((state) => state.setIsLoadingApp);
   const apiClient = useAuthStore((state) => state.apiClient);
 
   const putRequest = async (url: string, body: any) => {
-    setIsLoading(true);
+    if (globalLoader) {
+      setIsLoadingApp(true);
+    } else {
+      setIsLoading(true);
+    }
     try {
       if (apiClient) {
         const response = await apiClient.put(baseUrl + url, body);
         if (response.data.status === 200) {
           setData(response.data);
-          setResponseMessage(response.data.message);
-          setModal(null);
         } else {
           setData(null);
-          setModal({ tipo: 'error', message: response.data.error });
+          openAlert('error', 'Mostrar error del server');
         }
       }
     } catch (error: any) {
-      setModal({ tipo: 'error', message: error.response?.data?.error || error.message });
+      openAlert('error', 'Mostrar error del catch');
     } finally {
-      setIsLoading(false);
+      if (globalLoader) {
+        setIsLoadingApp(false);
+      } else {
+        setIsLoading(false);
+      }
     }
   };
 
-  return { putRequest, data };
+  return {putRequest, data, isLoading};
 };
 
 export default usePutService;

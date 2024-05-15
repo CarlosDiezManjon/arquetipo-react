@@ -25,16 +25,13 @@ export default function BottomNavigation() {
   }, [location.pathname]);
 
   return (
-    <div
-      className="h-footer bg-background w-full flex items-center justify-center fixed bottom-0 z-50"
-      style={{boxShadow: '0px 1px 5px 1px var(--primary-80)'}}
-    >
+    <div className="h-footer bg-background w-full flex items-center justify-center fixed bottom-0 z-50 border-t-primary border-t">
       {authRoutes.map((option, index) => (
         <Link
           key={index}
           className={
             'h-full w-4/12 flex flex-col justify-center mx-1 rounded font-medium  cursor-pointer z-50 text-primary transition-colors duration-300 ' +
-            (index === routeSelected ? 'text-primary-55' : '')
+            (index === routeSelected ? 'text-primary' : '')
           }
           to={option.path ? option.path : '/'}
         >

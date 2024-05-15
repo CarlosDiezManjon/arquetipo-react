@@ -31,15 +31,15 @@ export default function SideMenu({openMenu, setOpenMenu}: {openMenu: boolean; se
       onClose={() => setOpenMenu(false)}
       open={openMenu}
       size="large"
-      closeIcon={<CloseOutlined className="text-2xl text-text" />}
-      className="text-primary"
+      closeIcon={<CloseOutlined className="text-2xl text-primary" />}
+      className="text-primary !bg-background"
     >
       {authRoutes.map((option, index) => (
         <React.Fragment key={index}>
           <div className="text-primary text-2xl">
             {option.path != null ? (
               <Link
-                className={'flex items-center justify-start p-2 ' + (routeSelected == index ? 'text-primary-55' : '')}
+                className={'flex items-center justify-start p-2 ' + (routeSelected == index ? 'text-primary' : '')}
                 to={option.path}
                 onClick={() => setOpenMenu(false)}
               >

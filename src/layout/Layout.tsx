@@ -8,7 +8,7 @@ export default function Layout({children}: AppLayoutProps) {
   return (
     <div className="relative">
       <Header />
-      <div className={'h-content max-h-content flex-grow overflow-y-auto'}>{children}</div>
+      <div className={'h-content max-h-content flex-grow overflow-y-auto bg-background text-text'}>{children}</div>
       <BottomNavigation />
     </div>
   );
